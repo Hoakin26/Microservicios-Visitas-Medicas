@@ -1,5 +1,9 @@
 package microservicios.visitas_medicas.service;
 
+import microservicios.visitas_medicas.repository.*;
+import microservicios.visitas_medicas.model.*;
+import java.util.List;
+
 public class VisitaMedicaServiceImpl implements VisitaMedicaService {
     private final VisitaMedicaRepository repo;
 

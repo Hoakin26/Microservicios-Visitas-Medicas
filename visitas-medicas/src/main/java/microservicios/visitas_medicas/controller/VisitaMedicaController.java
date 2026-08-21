@@ -6,7 +6,7 @@ import microservicios.visitas_medicas.model.VisitaMedica;
 import java.util.List;
 
 @RestController
-@RequestMapping("/visitas-medicas")
+@RequestMapping("/api/visitas-medicas")
 public class VisitaMedicaController {
     private final VisitaMedicaService service;
 

@@ -4,10 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import lombok.Setter;
+import lombok.Getter;
 
 @Entity
-@Table("visitas_medicas")
+@Getter
+@Setter
 public class VisitaMedica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
