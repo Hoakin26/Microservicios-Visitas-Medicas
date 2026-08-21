@@ -1,14 +1,21 @@
 package microservicios.visitas_medicas.service;
 
 import microservicios.visitas_medicas.repository.*;
+import microservicios.visitas_medicas.dto.ExamenLaboratorioDTO;
 import microservicios.visitas_medicas.model.*;
 import java.util.List;
 
+import org.springframework.web.client.RestTemplate;
+
 public class VisitaMedicaServiceImpl implements VisitaMedicaService {
     private final VisitaMedicaRepository repo;
+    private final RestTemplate restTemplate;
 
-    public VisitaMedicaServiceImpl(VisitaMedicaRepository repo) {
+    private final String URL_LABORATORIO = "http://localhost:8082/api/laboratorio/ordenes";
+
+    public VisitaMedicaServiceImpl(VisitaMedicaRepository repo, RestTemplate restTemplate) {
         this.repo = repo;
+        this.restTemplate = restTemplate;
     }
     
     @Override
@@ -49,5 +56,24 @@ public class VisitaMedicaServiceImpl implements VisitaMedicaService {
     @Override
     public void delete(Long id) {
         repo.deleteById(id);
+    }
+
+    public void solicitarExamen(Long idVisita, String tipoExamen) {
+
+        VisitaMedica visita = repo.findById(idVisita)
+        .orElseThrow(() -> new RuntimeException("La visita médica no existe"));
+
+        ExamenLaboratorioDTO nuevaOrden = new ExamenLaboratorioDTO(idVisita, tipoExamen);
+
+        try {
+            ExamenLaboratorioDTO respuesta = restTemplate.postForObject(
+                URL_LABORATORIO, 
+                nuevaOrden, 
+                ExamenLaboratorioDTO.class
+            );
+            System.out.println("Orden de laboratorio creada exitosamente en MongoDB.");
+        } catch (Exception e) {
+            System.err.println("Error de comunicación con el microservicio de Laboratorio: " + e.getMessage());
+        }
     }
 }

@@ -1,0 +1,34 @@
+services:
+
+  laboratorio-db:
+    image: mongo:7.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 1029
+    ports:
+      - "27017:27017"
+
+  visitas-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: visitasdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+
+  visitas-medicas-service:
+    build:
+      context: ./visitas-medicas
+    ports:
+      - "8081:8081"
+    depends_on:
+      - visitas-db
+
+  laboratorio-service:
+    build:
+      context: ./laboratorio
+    ports:
+      - "8082:8082"
+    depends_on:
+      - laboratorio-db
