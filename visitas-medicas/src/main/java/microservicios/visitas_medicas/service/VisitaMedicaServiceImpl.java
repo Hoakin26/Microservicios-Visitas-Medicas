@@ -5,8 +5,10 @@ import microservicios.visitas_medicas.dto.ExamenLaboratorioDTO;
 import microservicios.visitas_medicas.model.*;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Service
 public class VisitaMedicaServiceImpl implements VisitaMedicaService {
     private final VisitaMedicaRepository repo;
     private final RestTemplate restTemplate;
@@ -58,6 +60,7 @@ public class VisitaMedicaServiceImpl implements VisitaMedicaService {
         repo.deleteById(id);
     }
 
+    @Override
     public void solicitarExamen(Long idVisita, String tipoExamen) {
 
         VisitaMedica visita = repo.findById(idVisita)

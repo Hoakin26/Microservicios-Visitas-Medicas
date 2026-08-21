@@ -15,6 +15,11 @@ public class LaboratorioServiceImpl implements LaboratorioService {
     }
 
     @Override
+    public List<Laboratorio> getAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public Laboratorio crearOrden(Laboratorio laboratorio) {
         laboratorio.setEstado("En_Proceso");
         return repository.save(laboratorio);

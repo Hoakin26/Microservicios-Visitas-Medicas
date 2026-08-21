@@ -14,6 +14,11 @@ public class LaboratorioController {
         this.service = service;
     }
 
+    @GetMapping
+    public List<Laboratorio> getAll() {
+        return service.getAll();
+    }
+
     @PostMapping("/ordenes")
     public Laboratorio recibirOrden(@RequestBody Laboratorio laboratorio) {
         return service.crearOrden(laboratorio);

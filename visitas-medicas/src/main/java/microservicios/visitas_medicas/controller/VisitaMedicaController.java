@@ -38,4 +38,13 @@ public class VisitaMedicaController {
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
+
+    @PostMapping("/{idVisita}/solicitar-examen")
+    public ResponseEntity<String> solicitarExamenLaboratorio(
+            @PathVariable Long idVisita, 
+            @RequestParam String tipoExamen) {
+        
+        service.solicitarExamen(idVisita, tipoExamen);
+        return ResponseEntity.ok("Orden enviada exitosamente al laboratorio");
+    }
 }
