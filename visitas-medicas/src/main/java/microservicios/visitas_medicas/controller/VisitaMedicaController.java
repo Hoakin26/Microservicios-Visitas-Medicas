@@ -1,5 +1,6 @@
 package microservicios.visitas_medicas.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import microservicios.visitas_medicas.service.VisitaMedicaService;
 import microservicios.visitas_medicas.model.VisitaMedica;

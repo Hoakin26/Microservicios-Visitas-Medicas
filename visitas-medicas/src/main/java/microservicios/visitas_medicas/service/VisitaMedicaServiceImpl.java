@@ -13,7 +13,7 @@ public class VisitaMedicaServiceImpl implements VisitaMedicaService {
     private final VisitaMedicaRepository repo;
     private final RestTemplate restTemplate;
 
-    private final String URL_LABORATORIO = "http://localhost:8082/api/laboratorio/ordenes";
+    private final String URL_LABORATORIO = "http://laboratorio-service:8082/api/laboratorio/ordenes";
 
     public VisitaMedicaServiceImpl(VisitaMedicaRepository repo, RestTemplate restTemplate) {
         this.repo = repo;

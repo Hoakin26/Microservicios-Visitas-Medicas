@@ -3,6 +3,8 @@ package microservicios.laboratorio.service;
 import microservicios.laboratorio.model.Laboratorio;
 import microservicios.laboratorio.repository.LaboratorioRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 
 @Service
